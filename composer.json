@@ -3,8 +3,8 @@
 	"type": "phpbb-extension",
 	"description": "Default Avatar Extension for phpBB 3.1.x",
 	"homepage": "https://github.com/AlfredoRamos/phpbb-ext-default-avatar",
-	"version": "0.2.2-beta",
-	"time": "2015-10-27",
+	"version": "0.2.3-beta",
+	"time": "2015-10-31",
 	"keywords": ["avatar", "gravatar", "phpbb", "extension"],
 	"license": "GPL-2.0",
 	"authors": [
