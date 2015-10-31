@@ -21,9 +21,7 @@ if (empty($lang) || !is_array($lang)) {
 }
 
 $lang = array_merge($lang, [
-	/**
-	 * ACP general
-	 */
+	// General
 	'ACP_DEFAULT_AVATAR'						=> 'الصورة الشخصية الإفتراضية ',
 	'ACP_DEFAULT_AVATAR_TYPE'					=> 'نوع الصورة الشخصية ',
 	'ACP_DEFAULT_AVATAR_TYPE_STYLE'				=> 'من الإستايل',
@@ -42,11 +40,9 @@ $lang = array_merge($lang, [
 	'ACP_DEFAULT_AVATAR_IMAGE_PREVIEW_INFO'		=> 'هنا سيتم عرض الصورة التي أضفتها.',
 	'ACP_DEFAULT_AVATAR_SETTINGS_SAVED'			=> 'تم حفظ الإعدادات بنجاح !',
 	
-	/**
-	 * ACP avatars by gender
-	 */
+	// Avatars by gender
 	'ACP_DEFAULT_AVATAR_BY_GENDER'						=> 'الصورة الشخصية بحسب نوع الجنس',
-	'ACP_DEFAULT_AVATAR_BY_GENDER_INFO'					=> 'أنت بحاجة إلى تثبيت وتفعيل الإضافة <a href="https://www.phpbb.com/customise/db/extension/phpbb_3.1_genders/"><strong>الجنس</strong></a> لكي تستطيع استخدام الصورة الشخصية بحسب نوع الجنس.',
+	'ACP_DEFAULT_AVATAR_BY_GENDER_INFO'					=> 'أنت بحاجة إلى تثبيت وتفعيل الإضافة <a href="https://www.phpbb.com/customise/db/extension/phpbb_3.1_genders">الجنس</a> لكي تستطيع استخدام الصورة الشخصية بحسب نوع الجنس.',
 	'ACP_DEFAULT_AVATAR_BY_GENDER_IMAGE_FORMATS'		=> 'أنواع امتداد الصور ',
 	'ACP_DEFAULT_AVATAR_BY_GENDER_IMAGE_FORMATS_INFO'	=> 'قائمة أنواع امتداد الصور للبحث عنها في مسار الإستايل. أفصل بينهم بعلامة الفاصلة. هذا الخيار لن يكون له أي تأثير إذا تم تحديد "%s" في الخيار : "%s".',
 	'ACP_DEFAULT_AVATAR_IMAGE_FEMALE'					=> 'رابط الصورة الشخصية ( أنثى )',

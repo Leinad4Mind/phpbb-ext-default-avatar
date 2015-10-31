@@ -12,13 +12,8 @@ class m1_default_avatar_data extends \phpbb\db\migration\migration {
 	public function effectively_installed() {
 		return isset($this->config['default_avatar_type']);
 	}
-	/**
-	 * Install BBCode data
-	 * @return array
-	 */
+	
 	public function update_data() {
-		$defaultavatar = \alfredoramos\defaultavatar\includes\defaultavatar::instance();
-		
 		return [
 			[
 				'config.add',
@@ -55,25 +50,10 @@ class m1_default_avatar_data extends \phpbb\db\migration\migration {
 			[
 				'config.add',
 				['default_avatar_image_extensions', 'jpg,png']
-			],
-			[
-				'module.add',
-				['acp', 'ACP_CAT_DOT_MODS', 'ACP_DEFAULT_AVATAR']
-			],
-			[
-				'module.add',
-				['acp', 'ACP_DEFAULT_AVATAR', [
-					'module_basename'	=> '\alfredoramos\defaultavatar\acp\main_module',
-					'modes'				=> ['settings']
-				]]
 			]
 		];
 	}
 	
-	/**
-	 * Uninstall BBCode data
-	 * @return array
-	 */
 	public function revert_data() {
 		return [
 			[

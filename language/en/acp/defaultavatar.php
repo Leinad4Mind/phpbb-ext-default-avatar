@@ -19,9 +19,7 @@ if (empty($lang) || !is_array($lang)) {
 }
 
 $lang = array_merge($lang, [
-	/**
-	 * ACP general
-	 */
+	// General
 	'ACP_DEFAULT_AVATAR'						=> 'Default Avatar Extension',
 	'ACP_DEFAULT_AVATAR_TYPE'					=> 'Avatar type',
 	'ACP_DEFAULT_AVATAR_TYPE_STYLE'				=> 'From style',
@@ -40,11 +38,9 @@ $lang = array_merge($lang, [
 	'ACP_DEFAULT_AVATAR_IMAGE_PREVIEW_INFO'		=> 'This is what the avatar will look like.',
 	'ACP_DEFAULT_AVATAR_SETTINGS_SAVED'			=> 'Settings have been saved successfully!',
 	
-	/**
-	 * ACP avatars by gender
-	 */
+	// Avatars by gender
 	'ACP_DEFAULT_AVATAR_BY_GENDER'						=> 'Avatar by gender',
-	'ACP_DEFAULT_AVATAR_BY_GENDER_INFO'					=> 'To enable avatars by gender you need to install and activate the <strong>Genders</strong> extension.',
+	'ACP_DEFAULT_AVATAR_BY_GENDER_INFO'					=> 'To enable avatars by gender you need to install and activate the <a href="https://www.phpbb.com/customise/db/extension/phpbb_3.1_genders">Genders</a> extension.',
 	'ACP_DEFAULT_AVATAR_BY_GENDER_IMAGE_FORMATS'		=> 'Image formats',
 	'ACP_DEFAULT_AVATAR_BY_GENDER_IMAGE_FORMATS_INFO'	=> 'A list of image file formats to search in the style path. Must be separated by a comma. This option won\'t have any effect if "%s" is not set to "%s".',
 	'ACP_DEFAULT_AVATAR_IMAGE_FEMALE'					=> 'Avatar image (female)',
