@@ -21,30 +21,42 @@ if (empty($lang) || !is_array($lang)) {
 }
 
 $lang = array_merge($lang, [
-	// General
-	'ACP_DEFAULT_AVATAR'						=> 'الصورة الشخصية الإفتراضية ',
-	'ACP_DEFAULT_AVATAR_TYPE'					=> 'نوع الصورة الشخصية ',
-	'ACP_DEFAULT_AVATAR_TYPE_STYLE'				=> 'من الإستايل',
-	'ACP_DEFAULT_AVATAR_TYPE_STYLE_INFO'		=> 'يجب أن تكون الصورة موجودة في أستايل العضو',
-	'ACP_DEFAULT_AVATAR_TYPE_LOCAL'				=> 'محلي',
-	'ACP_DEFAULT_AVATAR_TYPE_LOCAL_INFO'		=> 'يجب أن تكون الصورة موجودة في المسار <code>%s</code>.',
-	'ACP_DEFAULT_AVATAR_TYPE_REMOTE'			=> 'خارجي',
-	'ACP_DEFAULT_AVATAR_TYPE_REMOTE_INFO'		=> 'يجب أن يكون رابط مباشر للصورة من موقع خارجي أو موقعك.',
-	'ACP_DEFAULT_AVATAR_TYPE_GRAVATAR'			=> 'جرافتار',
-	'ACP_DEFAULT_AVATAR_TYPE_GRAVATAR_INFO'		=> 'صورة من الموقع Gravatar. يجب أن تحتوي الصورة على بريد إلكتروني صالحس.',
-	'ACP_DEFAULT_AVATAR_IMAGE'					=> 'رابط الصورة الشخصية ',
-	'ACP_DEFAULT_AVATAR_IMAGE_INFO'				=> '<strong>%s</strong> لن يكون لها أي تأثير إذا تم تحديد "<em>%s</em>" في الخيار : <strong>%s</strong>.',
-	'ACP_DEFAULT_AVATAR_IMAGE_DIMENSIONS'		=> 'أبعاد الصورة الشخصية ',
-	'ACP_DEFAULT_AVATAR_IMAGE_DIMENSIONS_INFO'	=> 'الحد الأعلى والأدنى لأبعاد الصورة تعتمد على <strong>%s</strong>.',
-	'ACP_DEFAULT_AVATAR_JAVASCRIPT_WARNING'		=> 'يجب تفعيل سكربت الجافا في مُتصفحك لمُعاينة الصورة.',
-	'ACP_DEFAULT_AVATAR_IMAGE_PREVIEW_INFO'		=> 'هنا سيتم عرض الصورة التي أضفتها.',
-	'ACP_DEFAULT_AVATAR_SETTINGS_SAVED'			=> 'تم حفظ الإعدادات بنجاح !',
+	'ACP_DEFAULT_AVATAR'		=> 'الصورة الشخصية الإفتراضية',
+	'ACP_JAVASCRIPT_EXPLAIN'	=> 'يجب تفعيل سكربت الجافا في مُتصفحك لمُعاينة الصورة.',
 	
-	// Avatars by gender
-	'ACP_DEFAULT_AVATAR_BY_GENDER'						=> 'الصورة الشخصية بحسب نوع الجنس',
-	'ACP_DEFAULT_AVATAR_BY_GENDER_INFO'					=> 'أنت بحاجة إلى تثبيت وتفعيل الإضافة <a href="https://www.phpbb.com/customise/db/extension/phpbb_3.1_genders">الجنس</a> لكي تستطيع استخدام الصورة الشخصية بحسب نوع الجنس.',
-	'ACP_DEFAULT_AVATAR_BY_GENDER_IMAGE_FORMATS'		=> 'أنواع امتداد الصور ',
-	'ACP_DEFAULT_AVATAR_BY_GENDER_IMAGE_FORMATS_INFO'	=> 'قائمة أنواع امتداد الصور للبحث عنها في مسار الإستايل. أفصل بينهم بعلامة الفاصلة. هذا الخيار لن يكون له أي تأثير إذا تم تحديد "%s" في الخيار : "%s".',
-	'ACP_DEFAULT_AVATAR_IMAGE_FEMALE'					=> 'رابط الصورة الشخصية ( أنثى )',
-	'ACP_DEFAULT_AVATAR_IMAGE_MALE'						=> 'رابط الصورة الشخصية ( ذكر )'
+	'ACP_SETTINGS_SAVED'		=> 'تم حفظ الإعدادات بنجاح !',
+	
+	'ACP_AVATAR_TYPE'			=> 'نوع الصورة الشخصية ',
+	'ACP_AVATAR_TYPE_EXPLAIN'	=> '%s: %s<br />%s: %s<br />%s: %s<br />%s: %s<br />',
+	
+	'ACP_AVATAR_FROM_STYLE'			=> 'من الإستايل',
+	'ACP_AVATAR_FROM_STYLE_EXPLAIN'	=> 'يجب أن تكون الصورة موجودة في أستايل العضو',
+	
+	'ACP_LOCAL_AVATAR'			=> 'محلي',
+	'ACP_LOCAL_AVATAR_EXPLAIN'	=> 'يجب أن تكون الصورة موجودة في المسار <code>%s</code>.',
+	
+	'ACP_REMOTE_AVATAR'			=> 'خارجي',
+	'ACP_REMOTE_AVATAR_EXPLAIN'	=> 'يجب أن يكون رابط مباشر للصورة من موقع خارجي أو موقعك.',
+	
+	'ACP_GRAVATAR_AVATAR'			=> 'جرافتار',
+	'ACP_GRAVATAR_AVATAR_EXPLAIN'	=> 'صورة من الموقع Gravatar. يجب أن يكون البريد الإلكتروني صالح.',
+	
+	'ACP_AVATAR_IMAGE'			=> 'رابط الصورة الشخصية ',
+	'ACP_AVATAR_IMAGE_FEMALE'	=> 'رابط الصورة الشخصية ( أنثى ) ',
+	'ACP_AVATAR_IMAGE_MALE'		=> 'رابط الصورة الشخصية ( ذكر ) ',
+	'ACP_AVATAR_IMAGE_EXPLAIN'	=> '<strong>%s</strong> لن يكون لها أي تأثير إذا تم تحديد "<em>%s</em>" في الخيار : <strong>%s</strong>.',
+	
+	'ACP_AVATAR_DIMENSIONS'			=> 'أبعاد الصورة الشخصية ',
+	'ACP_AVATAR_DIMENSIONS_EXPLAIN'	=> 'الحد الأعلى والأدنى لأبعاد الصورة تعتمد على <strong>%s</strong>.',
+	
+	'ACP_FORCE_AVATAR'			=> 'فرض الصورة الشخصية ',
+	'ACP_FORCE_AVATAR_EXPLAIN'	=> 'يعني استخدام الصورة الشخصية بصورة إجبارية حتى لو تم تعطيلها بواسطة العضو من لوحة التحكم الخاصة به.',
+	
+	'ACP_AVATAR_BY_GENDER'			=> 'الصورة الشخصية بحسب نوع الجنس ',
+	'ACP_AVATAR_BY_GENDER_EXPLAIN'	=> 'أنت بحاجة إلى تثبيت وتفعيل الإضافة <a href="https://www.phpbb.com/customise/db/extension/phpbb_3.1_genders">الجنس</a> لكي تستطيع استخدام الصورة الشخصية بحسب نوع الجنس.',
+	
+	'ACP_IMAGE_EXTENSIONS'			=> 'أنواع امتداد الصور ',
+	'ACP_IMAGE_EXTENSIONS_EXPLAIN'	=> 'قائمة أنواع امتداد الصور للبحث عنها في مسار الإستايل. أفصل بينهم بعلامة الفاصلة. هذا الخيار لن يكون له أي تأثير إذا تم تحديد "%s" في الخيار : "%s".',
+	
+	'ACP_PREVIEW_EXPLAIN'	=> 'هنا سيتم عرض الصورة التي أضفتها.'
 ]);
