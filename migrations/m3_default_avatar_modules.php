@@ -7,7 +7,7 @@
  * @license GNU GPL 2.0 <https://www.gnu.org/licenses/gpl-2.0.txt>
  */
 
-class m2_default_avatar_modules extends \phpbb\db\migration\migration {
+class m3_default_avatar_modules extends \phpbb\db\migration\migration {
 	
 	public function update_data() {
 		return [

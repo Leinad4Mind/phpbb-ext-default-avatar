@@ -2,6 +2,7 @@ services:
     alfredoramos.defaultavatar.listener:
         class: alfredoramos\defaultavatar\event\listener
         arguments:
+            - @request
             - @controller.helper
             - @template
             - @config

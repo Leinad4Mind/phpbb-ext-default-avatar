@@ -124,7 +124,7 @@ class defaultavatar {
 			'ext'	=> 'gif'
 		];
 		
-		$extensions = explode(',', trim($this->config['default_avatar_image_extensions']));
+		$extensions = explode(',', trim($this->config['default_avatar_extensions']));
 		
 		if ($this->can_enable_gender_avatars() && $this->config['default_avatar_by_gender']) {
 			
@@ -303,5 +303,33 @@ class defaultavatar {
 			'user_avatar_width'		=> $this->config['default_avatar_width'],
 			'user_avatar_height'	=> $this->config['default_avatar_height']
 		];
+	}
+	
+	/**
+	 * Check if default avatar can be shown
+	 * @param	array	$user	User data
+	 * @return	bool
+	 */
+	public function can_show_default_avatar($user = []) {
+		$show = false;
+		
+		// Checks if avatars are enabled
+		if (is_array($user) && !empty($user) && $this->config['allow_avatar']) {
+			
+			// Checks if the user has not set an avatar
+			if (empty($user['user_avatar'])) {
+				
+				// Checks if the user allows the use of the default avatar
+				// or if the admin has overridden the user's settings
+				if (!empty($user['user_allow_default_avatar']) || $this->config['force_default_avatar']) {
+					$show = true;
+				}
+				
+			}
+			
+		}
+		
+		return $show;
+		
 	}
 }

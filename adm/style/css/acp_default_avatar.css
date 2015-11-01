@@ -5,6 +5,18 @@
  * @license GNU GPL 3.0+ <https://www.gnu.org/licenses/gpl-3.0.txt>
  */
 
+.default-avatar-settings,
+.default-avatar-settings * {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+.default-avatar-settings .responsive {
+	width: 100%;
+}
+.default-avatar-settings label > .radio {
+	vertical-align: middle;
+}
 .avatar-preview {
 	display: inline-block;
 	margin: 0 10px 10px 0;

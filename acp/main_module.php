@@ -32,8 +32,9 @@ class main_module {
 			],
 			'width'		=> 0,
 			'hight'		=> 0,
-			'gender'	=> false,
-			'extensions'=> ''
+			'gender'	=> 0,
+			'extensions'=> '',
+			'force'		=> 0
 		];
 		
 		if ($request->is_set_post('submit')) {
@@ -63,11 +64,14 @@ class main_module {
 			$avatar['height'] = ($avatar['height'] > $config['avatar_max_height']) ? $config['avatar_max_height'] : $avatar['height'];
 			
 			// Avatar by gender
-			$avatar['gender'] = $request->variable('default_avatar_by_gender', (bool) $config['default_avatar_by_gender']);
+			$avatar['gender'] = $request->variable('default_avatar_by_gender', $config['default_avatar_by_gender']);
 			$avatar['gender'] = $defaultavatar->can_enable_gender_avatars() ? $avatar['gender'] : false;
 			
 			// Avatar image extensions
 			$avatar['extensions'] = $request->variable('default_avatar_image_extensions', $config['default_avatar_image_extensions']);
+			
+			// Force default avatar
+			$avatar['force'] = $request->variable('force_default_avatar', $config['force_default_avatar']);
 			
 			// Avatar settings
 			$config->set('default_avatar_type', $avatar['type']);
@@ -79,58 +83,53 @@ class main_module {
 			$config->set('default_avatar_height', $avatar['height']);
 			$config->set('default_avatar_by_gender', $avatar['gender']);
 			$config->set('default_avatar_image_extensions', $avatar['extensions']);
+			$config->set('force_default_avatar', $avatar['force']);
 			
-			trigger_error($user->lang('ACP_DEFAULT_AVATAR_SETTINGS_SAVED') . adm_back_link($this->u_action));
+			trigger_error($user->lang('ACP_SETTINGS_SAVED') . adm_back_link($this->u_action));
 		}
 		
 		// Template variables
 		$template->assign_vars([
-			'U_ACTION'							=> $this->u_action,
-			'BOARD_URL'							=> generate_board_url() . '/',
-			'BOARD_STYLE_PATH'					=> $defaultavatar->get_style($user->data['user_style'])['style_path'],
-			'DEFAULT_AVATAR_TYPE'				=> $config['default_avatar_type'],
-			'DEFAULT_AVATAR_IMAGE'				=> $config['default_avatar_image'],
-			'DEFAULT_AVATAR_IMAGE_FEMALE'		=> $config['default_avatar_image_female'],
-			'DEFAULT_AVATAR_IMAGE_MALE'			=> $config['default_avatar_image_male'],
-			'DEFAULT_AVATAR_WIDTH'				=> $config['default_avatar_width'],
-			'DEFAULT_AVATAR_HEIGHT'				=> $config['default_avatar_height'],
-			'DEFAULT_AVATAR_BY_GENDER'			=> $config['default_avatar_by_gender'],
-			'DEFAULT_AVATAR_IMAGE_EXTENSIONS'	=> $config['default_avatar_image_extensions'],
-			'DEFAULT_AVATAR_TYPE_NOTICE'		=> vsprintf('%s<br />%s<br />%s<br />%s<br />', [
-				vsprintf('%s: %s', [
-					$user->lang('ACP_DEFAULT_AVATAR_TYPE_STYLE'),
-					$user->lang('ACP_DEFAULT_AVATAR_TYPE_STYLE_INFO')
-				]),
-				vsprintf('%s: %s', [
-					$user->lang('ACP_DEFAULT_AVATAR_TYPE_LOCAL'),
-					vsprintf($user->lang('ACP_DEFAULT_AVATAR_TYPE_LOCAL_INFO'), [
-						'./' . $config['avatar_gallery_path']
-					])
-				]),
-				vsprintf('%s: %s', [
-					$user->lang('ACP_DEFAULT_AVATAR_TYPE_REMOTE'),
-					$user->lang('ACP_DEFAULT_AVATAR_TYPE_REMOTE_INFO')
-				]),
-				vsprintf('%s: %s', [
-					$user->lang('ACP_DEFAULT_AVATAR_TYPE_GRAVATAR'),
-					$user->lang('ACP_DEFAULT_AVATAR_TYPE_GRAVATAR_INFO'),
-				])
+			'U_ACTION'					=> $this->u_action,
+			'BOARD_URL'					=> generate_board_url() . '/',
+			'BOARD_STYLE_PATH'			=> $defaultavatar->get_style($user->data['user_style'])['style_path'],
+			'AVATAR_TYPE_EXPLAIN'		=> vsprintf($user->lang('ACP_AVATAR_TYPE_EXPLAIN'), [
+				$user->lang('ACP_AVATAR_FROM_STYLE'),
+				$user->lang('ACP_AVATAR_FROM_STYLE_EXPLAIN'),
+				$user->lang('ACP_LOCAL_AVATAR'),
+				sprintf(
+					$user->lang('ACP_LOCAL_AVATAR_EXPLAIN'),
+					'./' . $config['avatar_gallery_path']
+				),
+				$user->lang('ACP_REMOTE_AVATAR'),
+				$user->lang('ACP_REMOTE_AVATAR_EXPLAIN'),
+				$user->lang('ACP_GRAVATAR_AVATAR'),
+				$user->lang('ACP_GRAVATAR_AVATAR_EXPLAIN'),
 			]),
-			'DEFAULT_AVATAR_BY_GENDER_NOTICE'	=> vsprintf($user->lang('ACP_DEFAULT_AVATAR_BY_GENDER_IMAGE_FORMATS_INFO'), [
-				$user->lang('ACP_DEFAULT_AVATAR_TYPE'),
-				$user->lang('ACP_DEFAULT_AVATAR_TYPE_STYLE')
+			'IMAGE_EXTENSIONS_EXPLAIN'	=> vsprintf($user->lang('ACP_IMAGE_EXTENSIONS_EXPLAIN'), [
+				$user->lang('ACP_AVATAR_TYPE'),
+				$user->lang('ACP_AVATAR_FROM_STYLE')
 			]),
-			'DEFAULT_AVATAR_IMAGE_NOTICE'		=> vsprintf($user->lang('ACP_DEFAULT_AVATAR_IMAGE_INFO'), [
-				$user->lang('ACP_DEFAULT_AVATAR_IMAGE'),
-				$user->lang('ACP_DEFAULT_AVATAR_TYPE'),
-				$user->lang('ACP_DEFAULT_AVATAR_TYPE_STYLE')
+			'AVATAR_IMAGE_EXPLAIN'		=> vsprintf($user->lang('ACP_AVATAR_IMAGE_EXPLAIN'), [
+				$user->lang('ACP_AVATAR_IMAGE'),
+				$user->lang('ACP_AVATAR_TYPE'),
+				$user->lang('ACP_AVATAR_FROM_STYLE')
 			]),
-			'DEFAULT_AVATAR_DIMENSIONS_NOTICE'	=> sprintf($user->lang('ACP_DEFAULT_AVATAR_IMAGE_DIMENSIONS_INFO'), $user->lang('ACP_AVATAR_SETTINGS')),
-			'CONFIG_AVATAR_MIN_WIDTH'			=> $config['avatar_min_width'],
-			'CONFIG_AVATAR_MAX_WIDTH'			=> $config['avatar_max_width'],
-			'CONFIG_AVATAR_MIN_HEIGHT'			=> $config['avatar_min_height'],
-			'CONFIG_AVATAR_MAX_HEIGHT'			=> $config['avatar_max_height'],
-			'CAN_ENABLE_AVATAR_BY_GENDER'		=> $defaultavatar->can_enable_gender_avatars()
+			'AVATAR_DIMENSIONS_EXPLAIN'	=> sprintf($user->lang('ACP_AVATAR_DIMENSIONS_EXPLAIN'), $user->lang('ACP_AVATAR_SETTINGS')),
+			
+			'AVATAR_TYPE'				=> $config['default_avatar_type'],
+			'AVATAR_BY_GENDER'			=> $config['default_avatar_by_gender'],
+			'AVATAR_EXTENSIONS'			=> $config['default_avatar_extensions'],
+			'AVATAR_IMAGE'				=> $config['default_avatar_image'],
+			'AVATAR_IMAGE_FEMALE'		=> $config['default_avatar_image_female'],
+			'AVATAR_IMAGE_MALE'			=> $config['default_avatar_image_male'],
+			'AVATAR_MIN_WIDTH'			=> $config['avatar_min_width'],
+			'AVATAR_WIDTH'				=> $config['default_avatar_width'],
+			'AVATAR_MAX_WIDTH'			=> $config['avatar_max_width'],
+			'AVATAR_MIN_HEIGHT'			=> $config['avatar_min_height'],
+			'AVATAR_HEIGHT'				=> $config['default_avatar_height'],
+			'AVATAR_MAX_HEIGHT'			=> $config['avatar_max_height'],
+			'FORCE_DEFAULT_AVATAR'		=> $config['force_default_avatar']
 		]);
 	}
 }
