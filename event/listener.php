@@ -110,9 +110,9 @@ class listener implements EventSubscriberInterface {
 		}
 	}
 	
-	public function ucp_prefs_personal_default_avatar($event) {		
+	public function ucp_prefs_personal_default_avatar($event) {
 		$event['data'] = array_merge($event['data'], [
-			'allowdefaultavatar'	=> $this->request->variable('allowdefaultavatar', $this->user->data['user_allow_default_avatar'])
+			'allowdefaultavatar'	=> $this->request->variable('allowdefaultavatar', (bool) $this->user->data['user_allow_default_avatar'])
 		]);
 		$event['sql_ary'] = array_merge($event['sql_ary'], [
 			'user_allow_default_avatar'	=> $event['data']['allowdefaultavatar']
