@@ -56,5 +56,5 @@ $lang = array_merge($lang, [
 	'ACP_IMAGE_EXTENSIONS'			=> 'Image extensions',
 	'ACP_IMAGE_EXTENSIONS_EXPLAIN'	=> 'A list of image extensions to search in the style path. Must be separated by a comma. This option won\'t have any effect if "%s" is not set to "%s".',
 	
-	'ACP_PREVIEW_EXPLAIN'	=> 'This is what the avatar will look like.',
+	'ACP_PREVIEW_EXPLAIN'	=> 'This is what the avatar will look like.'
 ]);

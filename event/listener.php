@@ -13,6 +13,7 @@
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class listener implements EventSubscriberInterface {
+	
 	/* @var \phpbb\request\request */
 	protected $request;
 	
@@ -57,7 +58,7 @@ class listener implements EventSubscriberInterface {
 			'core.viewtopic_post_rowset_data'		=> 'viewtopic_post_default_avatar',
 			'core.ucp_pm_view_messsage'				=> 'ucp_pm_default_avatar',
 			'core.memberlist_view_profile'			=> 'viewprofile_default_avatar',
-			'core.ucp_prefs_personal_update_data'	=> 'ucp_validate_default_avatar'
+			'core.ucp_prefs_personal_update_data'	=> 'ucp_prefs_personal_default_avatar'
 		];
 	}
 	
@@ -109,7 +110,7 @@ class listener implements EventSubscriberInterface {
 		}
 	}
 	
-	public function ucp_validate_default_avatar($event) {		
+	public function ucp_prefs_personal_default_avatar($event) {		
 		$event['data'] = array_merge($event['data'], [
 			'allowdefaultavatar'	=> $this->request->variable('allowdefaultavatar', $this->user->data['user_allow_default_avatar'])
 		]);
