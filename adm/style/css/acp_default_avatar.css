@@ -6,7 +6,7 @@
  */
 
 .default-avatar-settings,
-.default-avatar-settings * {
+.default-avatar-settings .responsive {
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;

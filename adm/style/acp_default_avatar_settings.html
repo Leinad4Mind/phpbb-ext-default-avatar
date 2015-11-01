@@ -21,16 +21,16 @@
 			</dt>
 			<dd>
 				<label>
-					<input name="default_avatar_type" class="radio default-avatar-control" type="radio" value="style"<!-- IF AVATAR_TYPE eq "style" --> checked="checked"<!-- ENDIF -->> {L_ACP_AVATAR_FROM_STYLE}
+					<input name="default_avatar_type" class="radio trigger" type="radio" value="style"<!-- IF AVATAR_TYPE eq "style" --> checked="checked"<!-- ENDIF -->> {L_ACP_AVATAR_FROM_STYLE}
 				</label>
 				<label>
-					<input name="default_avatar_type" class="radio default-avatar-control" type="radio" value="local"<!-- IF AVATAR_TYPE eq "local" --> checked="checked"<!-- ENDIF -->> {L_ACP_LOCAL_AVATAR}
+					<input name="default_avatar_type" class="radio trigger" type="radio" value="local"<!-- IF AVATAR_TYPE eq "local" --> checked="checked"<!-- ENDIF -->> {L_ACP_LOCAL_AVATAR}
 				</label>
 				<label>
-					<input name="default_avatar_type" class="radio default-avatar-control" type="radio" value="remote"<!-- IF AVATAR_TYPE eq "remote" --> checked="checked"<!-- ENDIF -->> {L_ACP_REMOTE_AVATAR}
+					<input name="default_avatar_type" class="radio trigger" type="radio" value="remote"<!-- IF AVATAR_TYPE eq "remote" --> checked="checked"<!-- ENDIF -->> {L_ACP_REMOTE_AVATAR}
 				</label>
 				<label>
-					<input name="default_avatar_type" class="radio default-avatar-control" type="radio" value="gravatar"<!-- IF AVATAR_TYPE eq "gravatar" --> checked="checked"<!-- ENDIF -->> {L_ACP_GRAVATAR_AVATAR}
+					<input name="default_avatar_type" class="radio trigger" type="radio" value="gravatar"<!-- IF AVATAR_TYPE eq "gravatar" --> checked="checked"<!-- ENDIF -->> {L_ACP_GRAVATAR_AVATAR}
 				</label>
 			</dd>
 		</dl>
@@ -42,10 +42,10 @@
 			</dt>
 			<dd>
 				<label>
-					<input name="default_avatar_by_gender" class="radio default-avatar-control" type="radio" value="1"<!-- IF AVATAR_BY_GENDER --> checked="checked"<!-- ENDIF --> /> {L_YES}
+					<input name="default_avatar_by_gender" class="radio trigger" type="radio" value="1"<!-- IF AVATAR_BY_GENDER --> checked="checked"<!-- ENDIF --> /> {L_YES}
 				</label>
 				<label>
-					<input name="default_avatar_by_gender" class="radio default-avatar-control" type="radio" value="0"<!-- IF not AVATAR_BY_GENDER --> checked="checked"<!-- ENDIF --> /> {L_NO}
+					<input name="default_avatar_by_gender" class="radio trigger" type="radio" value="0"<!-- IF not AVATAR_BY_GENDER --> checked="checked"<!-- ENDIF --> /> {L_NO}
 				</label>
 			</dd>
 		</dl>
@@ -55,7 +55,7 @@
 				<br /><span>{IMAGE_EXTENSIONS_EXPLAIN}</span>
 			</dt>
 			<dd>
-				<input name="default_avatar_image_extensions" class="default-avatar-control responsive" id="default_avatar_image_extensions" type="text"<!-- IF AVATAR_EXTENSIONS --> value="{AVATAR_EXTENSIONS}"<!-- ENDIF --> />
+				<input name="default_avatar_image_extensions" class="trigger responsive" id="default_avatar_image_extensions" type="text"<!-- IF AVATAR_EXTENSIONS --> value="{AVATAR_EXTENSIONS}"<!-- ENDIF --> />
 			</dd>
 		</dl>
 		<!-- ENDIF -->
@@ -65,7 +65,7 @@
 				<label for="default_avatar_image">{L_ACP_AVATAR_IMAGE}</label>
 			</dt>
 			<dd>
-				<input name="default_avatar_image" class="default-avatar-control responsive" id="default_avatar_image" type="text"<!-- IF AVATAR_IMAGE --> value="{AVATAR_IMAGE}"<!-- ENDIF --> />
+				<input name="default_avatar_image" class="trigger responsive" id="default_avatar_image" type="text"<!-- IF AVATAR_IMAGE --> value="{AVATAR_IMAGE}"<!-- ENDIF --> />
 			</dd>
 		</dl>
 		<dl>
@@ -73,7 +73,7 @@
 				<label for="default_avatar_image_female">{L_ACP_AVATAR_IMAGE_FEMALE}</label>
 			</dt>
 			<dd>
-				<input name="default_avatar_image_female" class="default-avatar-control responsive" id="default_avatar_image_female" type="text"<!-- IF AVATAR_IMAGE_FEMALE --> value="{AVATAR_IMAGE_FEMALE}"<!-- ENDIF --> />
+				<input name="default_avatar_image_female" class="trigger responsive" id="default_avatar_image_female" type="text"<!-- IF AVATAR_IMAGE_FEMALE --> value="{AVATAR_IMAGE_FEMALE}"<!-- ENDIF --> />
 			</dd>
 		</dl>
 		<dl>
@@ -81,7 +81,7 @@
 				<label for="default_avatar_image_male">{L_ACP_AVATAR_IMAGE_MALE}</label>
 			</dt>
 			<dd>
-				<input name="default_avatar_image_male" class="default-avatar-control responsive" id="default_avatar_image_male" type="text"<!-- IF AVATAR_IMAGE_MALE --> value="{AVATAR_IMAGE_MALE}"<!-- ENDIF --> />
+				<input name="default_avatar_image_male" class="trigger responsive" id="default_avatar_image_male" type="text"<!-- IF AVATAR_IMAGE_MALE --> value="{AVATAR_IMAGE_MALE}"<!-- ENDIF --> />
 			</dd>
 		</dl>
 		<dl>
@@ -90,9 +90,9 @@
 				<br /><span>{L_MAX_AVATAR_SIZE_EXPLAIN}</span>
 			</dt>
 			<dd>
-				<input name="default_avatar_width" id="default_avatar_width" class="default-avatar-control" type="number" min="{AVATAR_MIN_WIDTH}" max="{AVATAR_MAX_WIDTH}" value="{AVATAR_WIDTH}" />
+				<input name="default_avatar_width" id="default_avatar_width" class="trigger" type="number" min="{AVATAR_MIN_WIDTH}" max="{AVATAR_MAX_WIDTH}" value="{AVATAR_WIDTH}" />
 				&nbsp;x&nbsp;
-				<input name="default_avatar_height" id="default_avatar_height" class="default-avatar-control" type="number" min="{AVATAR_MIN_HEIGHT}" max="{AVATAR_MAX_HEIGHT}" value="{AVATAR_HEIGHT}" />
+				<input name="default_avatar_height" id="default_avatar_height" class="trigger" type="number" min="{AVATAR_MIN_HEIGHT}" max="{AVATAR_MAX_HEIGHT}" value="{AVATAR_HEIGHT}" />
 			</dd>
 		</dl>
 		<dl>
@@ -102,10 +102,10 @@
 			</dt>
 			<dd>
 				<label>
-					<input name="force_default_avatar" class="radio" type="radio" value="1"<!-- IF FORCE_DEFAULT_AVATAR --> checked="checked"<!-- ENDIF --> /> {L_YES}
+					<input name="force_default_avatar" class="radio trigger" type="radio" value="1"<!-- IF FORCE_DEFAULT_AVATAR --> checked="checked"<!-- ENDIF --> /> {L_YES}
 				</label>
 				<label>
-					<input name="force_default_avatar" class="radio" type="radio" value="0"<!-- IF not FORCE_DEFAULT_AVATAR --> checked="checked"<!-- ENDIF --> /> {L_NO}
+					<input name="force_default_avatar" class="radio trigger" type="radio" value="0"<!-- IF not FORCE_DEFAULT_AVATAR --> checked="checked"<!-- ENDIF --> /> {L_NO}
 				</label>
 			</dd>
 		</dl>

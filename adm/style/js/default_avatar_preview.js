@@ -127,7 +127,7 @@ function setup_default_avatar_preview() {
 
 $(document).on('ready', function() {
 	setup_default_avatar_preview();
-	$('.default-avatar-control').on('change', function() {
+	$('.default-avatar-settings .trigger').on('change', function() {
 		setup_default_avatar_preview();
 	});
 });
