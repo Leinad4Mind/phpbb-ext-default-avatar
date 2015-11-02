@@ -63,7 +63,7 @@ $lang = array_merge($lang, [
 	'ACP_FORCE_AVATAR_EXPLAIN'	=> 'Forces the use of the default avatar if the user has disabled it in the UCP.',
 	
 	'ACP_AVATAR_BY_GENDER'			=> 'Avatar by gender',
-	'ACP_AVATAR_BY_GENDER_EXPLAIN'	=> 'To enable avatars by gender you need to install and activate the <a href="https://www.phpbb.com/customise/db/extension/phpbb_3.1_genders">Genders</a> extension.',
+	'ACP_AVATAR_BY_GENDER_EXPLAIN'	=> 'To enable avatars by gender you need to install and activate the <a href="https://www.phpbb.com/customise/db/extension/phpbb_3.1_genders" target="_blank" rel="nofollow">Genders</a> extension.',
 	
 	'ACP_IMAGE_EXTENSIONS'			=> 'Image extensions',
 	'ACP_IMAGE_EXTENSIONS_EXPLAIN'	=> 'A list of image extensions to search in the style path. Must be separated by a comma. This option won\'t have any effect if "%1$s" is not set to "%2$s".',

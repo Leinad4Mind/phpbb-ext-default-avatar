@@ -6,7 +6,7 @@
  * @copyright (c) 2015 Alfredo Ramos
  * @license GNU GPL 2.0 <https://www.gnu.org/licenses/gpl-2.0.txt>
  *
- * Translated By : Bassel Taha Alhitary - www.alhitary.net
+ * Translated by: Bassel Taha Alhitary <www.alhitary.net>
  */
 
 /**

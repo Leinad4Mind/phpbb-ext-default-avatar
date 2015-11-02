@@ -51,7 +51,7 @@ $lang = array_merge($lang, [
 	'ACP_FORCE_AVATAR_EXPLAIN'	=> 'Forza el uso del avatar por defecto si el usuario lo ha deshabilitado en el PCU.',
 	
 	'ACP_AVATAR_BY_GENDER'			=> 'Avatar por género',
-	'ACP_AVATAR_BY_GENDER_EXPLAIN'	=> 'Para habilitar esta opción necesita instalar y activar la extensión <a href="https://www.phpbb.com/customise/db/extension/phpbb_3.1_genders">Genders</a>.',
+	'ACP_AVATAR_BY_GENDER_EXPLAIN'	=> 'Para habilitar esta opción necesita instalar y activar la extensión <a href="https://www.phpbb.com/customise/db/extension/phpbb_3.1_genders" target="_blank" rel="nofollow">Genders</a>.',
 	
 	'ACP_IMAGE_EXTENSIONS'			=> 'Extensiones de imagen',
 	'ACP_IMAGE_EXTENSIONS_EXPLAIN'	=> 'Lista de extensiones de imagen a buscar en la ruta del estilo. Deben estar separadas por una coma. Esta opción no tendrá ningún efecto si "%1$s" es establecido a "%2$s".',
