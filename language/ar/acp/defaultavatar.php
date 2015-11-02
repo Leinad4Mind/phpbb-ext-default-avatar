@@ -27,13 +27,13 @@ $lang = array_merge($lang, [
 	'ACP_SETTINGS_SAVED'		=> 'تم حفظ الإعدادات بنجاح !',
 	
 	'ACP_AVATAR_TYPE'			=> 'نوع الصورة الشخصية ',
-	'ACP_AVATAR_TYPE_EXPLAIN'	=> '%s: %s<br />%s: %s<br />%s: %s<br />%s: %s<br />',
+	'ACP_AVATAR_TYPE_EXPLAIN'	=> '%1$s: %2$s<br />%3$s: %4$s<br />%5$s: %6$s<br />%7$s: %8$s<br />',
 	
 	'ACP_AVATAR_FROM_STYLE'			=> 'من الإستايل',
 	'ACP_AVATAR_FROM_STYLE_EXPLAIN'	=> 'يجب أن تكون الصورة موجودة في أستايل العضو',
 	
 	'ACP_LOCAL_AVATAR'			=> 'محلي',
-	'ACP_LOCAL_AVATAR_EXPLAIN'	=> 'يجب أن تكون الصورة موجودة في المسار <code>%s</code>.',
+	'ACP_LOCAL_AVATAR_EXPLAIN'	=> 'يجب أن تكون الصورة موجودة في المسار <code>%1$s</code>.',
 	
 	'ACP_REMOTE_AVATAR'			=> 'خارجي',
 	'ACP_REMOTE_AVATAR_EXPLAIN'	=> 'يجب أن يكون رابط مباشر للصورة من موقع خارجي أو موقعك.',
@@ -44,10 +44,10 @@ $lang = array_merge($lang, [
 	'ACP_AVATAR_IMAGE'			=> 'رابط الصورة الشخصية ',
 	'ACP_AVATAR_IMAGE_FEMALE'	=> 'رابط الصورة الشخصية ( أنثى ) ',
 	'ACP_AVATAR_IMAGE_MALE'		=> 'رابط الصورة الشخصية ( ذكر ) ',
-	'ACP_AVATAR_IMAGE_EXPLAIN'	=> '<strong>%s</strong> لن يكون لها أي تأثير إذا تم تحديد "<em>%s</em>" في الخيار : <strong>%s</strong>.',
+	'ACP_AVATAR_IMAGE_EXPLAIN'	=> '<strong>%1$s</strong> لن يكون لها أي تأثير إذا تم تحديد "<em>%3$s</em>" في الخيار : <strong>%2$s</strong>.',
 	
 	'ACP_AVATAR_DIMENSIONS'			=> 'أبعاد الصورة الشخصية ',
-	'ACP_AVATAR_DIMENSIONS_EXPLAIN'	=> 'الحد الأعلى والأدنى لأبعاد الصورة تعتمد على <strong>%s</strong>.',
+	'ACP_AVATAR_DIMENSIONS_EXPLAIN'	=> 'الحد الأعلى والأدنى لأبعاد الصورة تعتمد على <strong>%1$s</strong>.',
 	
 	'ACP_FORCE_AVATAR'			=> 'فرض الصورة الشخصية ',
 	'ACP_FORCE_AVATAR_EXPLAIN'	=> 'يعني استخدام الصورة الشخصية بصورة إجبارية حتى لو تم تعطيلها بواسطة العضو من لوحة التحكم الخاصة به.',
