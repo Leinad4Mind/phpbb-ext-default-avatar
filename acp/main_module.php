@@ -25,16 +25,44 @@ class main_module {
 		$avatar = [
 			'type'		=> '',
 			'driver'	=> '',
-			'name'		=> [
+			'image'		=> [
 				'default'	=> '',
 				'female'	=> '',
 				'male'		=> ''
 			],
 			'width'		=> 0,
-			'hight'		=> 0,
-			'gender'	=> 0,
+			'height'	=> 0,
+			'gender'	=> false,
 			'extensions'=> '',
-			'force'		=> 0
+			'force'		=> false
+		];
+		
+		// Current values stored in a new variable
+		// to cast values to their correct type
+		$current = [
+			'type'		=> $config['default_avatar_type'],
+			'driver'	=> sprintf(
+				'avatar.driver.%s',
+				($config['default_avatar_type'] === 'style') ? 'remote' : $config['default_avatar_type']
+			),
+			'image'		=> [
+				'default'	=> $config['default_avatar_image'],
+				'female'	=> $config['default_avatar_image_female'],
+				'male'		=> $config['default_avatar_image_male']
+			],
+			'width'		=> [
+				'min'	=> (int) $config['avatar_min_width'],
+				'max'	=> (int) $config['avatar_max_width'],
+				'conf'	=> (int) $config['default_avatar_width']
+			],
+			'height'	=> [
+				'min'	=> (int) $config['avatar_min_height'],
+				'max'	=> (int) $config['avatar_max_height'],
+				'conf'	=> (int) $config['default_avatar_height']
+			],
+			'gender'	=> (bool) $config['default_avatar_by_gender'],
+			'extensions'=> $config['default_avatar_extensions'],
+			'force'		=> (bool) $config['force_default_avatar']
 		];
 		
 		if ($request->is_set_post('submit')) {
@@ -43,46 +71,46 @@ class main_module {
 			}
 			
 			// Avatar type
-			$avatar['type'] = $request->variable('default_avatar_type', $config['default_avatar_type']);
+			$avatar['type'] = $request->variable('default_avatar_type', $current['type']);
 			
 			// Avatar driver
-			$avatar['driver'] = sprintf('avatar.driver.%s', ($avatar['type'] === 'style') ? 'remote' : $avatar['type']);
+			$avatar['driver'] = $current['driver'];
 			
 			// Avatar image
-			$avatar['name']['default'] = $request->variable('default_avatar_image', $config['default_avatar_image']);
-			$avatar['name']['female'] = $request->variable('default_avatar_image_female', $config['default_avatar_image_female']);
-			$avatar['name']['male'] = $request->variable('default_avatar_image_male', $config['default_avatar_image_male']);
+			$avatar['image']['default'] = $request->variable('default_avatar_image', $current['image']['default']);
+			$avatar['image']['female'] = $request->variable('default_avatar_image_female', $current['image']['female']);
+			$avatar['image']['male'] = $request->variable('default_avatar_image_male', $current['image']['male']);
 			
 			// Avatar width
-			$avatar['width'] = $request->variable('default_avatar_width', (int) $config['default_avatar_width']);
-			$avatar['width'] = ($avatar['width'] < $config['avatar_min_width']) ? $config['avatar_min_width'] : $avatar['width'];
-			$avatar['width'] = ($avatar['width'] > $config['avatar_max_width']) ? $config['avatar_max_width'] : $avatar['width'];
+			$avatar['width'] = $request->variable('default_avatar_width', $current['width']['conf']);
+			$avatar['width'] = ($avatar['width'] < $current['width']['min']) ? $current['width']['min'] : $avatar['width'];
+			$avatar['width'] = ($avatar['width'] > $current['width']['max']) ? $current['width']['max'] : $avatar['width'];
 			
 			// Avatar height
-			$avatar['height'] = $request->variable('default_avatar_height', (int) $config['default_avatar_height']);
-			$avatar['height'] = ($avatar['height'] < $config['avatar_min_height']) ? $config['avatar_min_height'] : $avatar['height'];
-			$avatar['height'] = ($avatar['height'] > $config['avatar_max_height']) ? $config['avatar_max_height'] : $avatar['height'];
+			$avatar['height'] = $request->variable('default_avatar_height', $current['height']['conf']);
+			$avatar['height'] = ($avatar['height'] < $current['height']['min']) ? $current['height']['min'] : $avatar['height'];
+			$avatar['height'] = ($avatar['height'] > $current['height']['max']) ? $current['height']['max'] : $avatar['height'];
 			
 			// Avatar by gender
-			$avatar['gender'] = $request->variable('default_avatar_by_gender', $config['default_avatar_by_gender']);
+			$avatar['gender'] = $request->variable('default_avatar_by_gender', $current['gender']);
 			$avatar['gender'] = $defaultavatar->can_enable_gender_avatars() ? $avatar['gender'] : false;
 			
 			// Avatar image extensions
-			$avatar['extensions'] = $request->variable('default_avatar_image_extensions', $config['default_avatar_image_extensions']);
+			$avatar['extensions'] = $request->variable('default_avatar_image_extensions', $current['extensions']);
 			
 			// Force default avatar
-			$avatar['force'] = $request->variable('force_default_avatar', $config['force_default_avatar']);
+			$avatar['force'] = $request->variable('force_default_avatar', $current['force']);
 			
 			// Avatar settings
 			$config->set('default_avatar_type', $avatar['type']);
 			$config->set('default_avatar_driver', $avatar['driver']);
-			$config->set('default_avatar_image', $avatar['name']['default']);
-			$config->set('default_avatar_image_female', $avatar['name']['female']);
-			$config->set('default_avatar_image_male', $avatar['name']['male']);
+			$config->set('default_avatar_image', $avatar['image']['default']);
+			$config->set('default_avatar_image_female', $avatar['image']['female']);
+			$config->set('default_avatar_image_male', $avatar['image']['male']);
 			$config->set('default_avatar_width', $avatar['width']);
 			$config->set('default_avatar_height', $avatar['height']);
 			$config->set('default_avatar_by_gender', $avatar['gender']);
-			$config->set('default_avatar_image_extensions', $avatar['extensions']);
+			$config->set('default_avatar_extensions', $avatar['extensions']);
 			$config->set('force_default_avatar', $avatar['force']);
 			
 			trigger_error($user->lang('ACP_SETTINGS_SAVED') . adm_back_link($this->u_action));
@@ -117,19 +145,19 @@ class main_module {
 			]),
 			'AVATAR_DIMENSIONS_EXPLAIN'	=> sprintf($user->lang('ACP_AVATAR_DIMENSIONS_EXPLAIN'), $user->lang('ACP_AVATAR_SETTINGS')),
 			
-			'AVATAR_TYPE'				=> $config['default_avatar_type'],
-			'AVATAR_BY_GENDER'			=> $config['default_avatar_by_gender'],
-			'AVATAR_EXTENSIONS'			=> $config['default_avatar_extensions'],
-			'AVATAR_IMAGE'				=> $config['default_avatar_image'],
-			'AVATAR_IMAGE_FEMALE'		=> $config['default_avatar_image_female'],
-			'AVATAR_IMAGE_MALE'			=> $config['default_avatar_image_male'],
-			'AVATAR_MIN_WIDTH'			=> $config['avatar_min_width'],
-			'AVATAR_WIDTH'				=> $config['default_avatar_width'],
-			'AVATAR_MAX_WIDTH'			=> $config['avatar_max_width'],
-			'AVATAR_MIN_HEIGHT'			=> $config['avatar_min_height'],
-			'AVATAR_HEIGHT'				=> $config['default_avatar_height'],
-			'AVATAR_MAX_HEIGHT'			=> $config['avatar_max_height'],
-			'FORCE_DEFAULT_AVATAR'		=> $config['force_default_avatar']
+			'AVATAR_TYPE'				=> $current['type'],
+			'AVATAR_BY_GENDER'			=> $current['gender'],
+			'AVATAR_EXTENSIONS'			=> $current['extensions'],
+			'AVATAR_IMAGE'				=> $current['image']['default'],
+			'AVATAR_IMAGE_FEMALE'		=> $current['image']['female'],
+			'AVATAR_IMAGE_MALE'			=> $current['image']['male'],
+			'AVATAR_MIN_WIDTH'			=> $current['width']['min'],
+			'AVATAR_WIDTH'				=> $current['width']['conf'],
+			'AVATAR_MAX_WIDTH'			=> $current['width']['max'],
+			'AVATAR_MIN_HEIGHT'			=> $current['height']['min'],
+			'AVATAR_HEIGHT'				=> $current['height']['conf'],
+			'AVATAR_MAX_HEIGHT'			=> $current['height']['max'],
+			'FORCE_DEFAULT_AVATAR'		=> $current['force']
 		]);
 	}
 }

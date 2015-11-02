@@ -18,4 +18,8 @@ Default Avatar Extension for phpBB 3.1.x is released under [GNU GPL 2.0](https:/
 ![Preview Viewtopic](https://i.imgur.com/mALb9e0.png)
 
 ## Translations
-- @alhitary - Arabic [ar]
+
+- Arabic [ar] - @alhitary
+- Spanish (Formal Honorifics) [es] - @AlfredoRamos
+- Spanish (Casual Honorifics) [es-x-tu] - @AlfredoRamos
+- Mexican Spanish (Formal Honorifics) [es-mx] - @AlfredoRamos
