@@ -72,6 +72,7 @@ class main_module {
 			
 			// Avatar type
 			$avatar['type'] = $request->variable('default_avatar_type', $current['type']);
+			$avatar['type'] = in_array($avatar['type'], ['style', 'local', 'remote', 'gravatar']) ? $avatar['type'] : 'style';
 			
 			// Avatar driver
 			$avatar['driver'] = $current['driver'];
@@ -97,6 +98,9 @@ class main_module {
 			
 			// Avatar image extensions
 			$avatar['extensions'] = $request->variable('default_avatar_image_extensions', $current['extensions']);
+			$avatar['extensions'] = trim($avatar['extensions'], ',');
+			$avatar['extensions'] = array_map('trim', explode(',', $avatar['extensions']));
+			$avatar['extensions'] = implode(',', $avatar['extensions']);
 			
 			// Force default avatar
 			$avatar['force'] = $request->variable('force_default_avatar', $current['force']);
