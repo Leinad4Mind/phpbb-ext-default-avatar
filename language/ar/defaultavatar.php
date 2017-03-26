@@ -21,16 +21,20 @@ if (empty($lang) || !is_array($lang)) {
 }
 
 $lang = array_merge($lang, [
+	// UCP
+	'UCP_ALLOW_DEFAULT_AVATAR'			=> 'السماح بإستخدام الصورة الشخصية الإفتراضية :',
+	'UCP_ALLOW_DEFAULT_AVATAR_EXPLAIN'	=> 'نرجوا الملاحظة بأن المدراء يستطيعون تعطيل هذا الخيار.',
+	
+	// ACP
 	'ACP_DEFAULT_AVATAR'		=> 'الصورة الشخصية الإفتراضية',
-	'ACP_JAVASCRIPT_EXPLAIN'	=> 'يجب تفعيل سكربت الجافا في مُتصفحك لمُعاينة الصورة.',
 	
 	'ACP_SETTINGS_SAVED'		=> 'تم حفظ الإعدادات بنجاح !',
 	
 	'ACP_AVATAR_TYPE'			=> 'نوع الصورة الشخصية ',
 	'ACP_AVATAR_TYPE_EXPLAIN'	=> '%1$s: %2$s<br />%3$s: %4$s<br />%5$s: %6$s<br />%7$s: %8$s<br />',
 	
-	'ACP_AVATAR_FROM_STYLE'			=> 'من الإستايل',
-	'ACP_AVATAR_FROM_STYLE_EXPLAIN'	=> 'يجب أن تكون الصورة موجودة في أستايل العضو',
+	'ACP_STYLE_AVATAR'			=> 'من الإستايل',
+	'ACP_STYLE_AVATAR_EXPLAIN'	=> 'يجب أن تكون الصورة موجودة في أستايل العضو',
 	
 	'ACP_LOCAL_AVATAR'			=> 'رابط محلي',
 	'ACP_LOCAL_AVATAR_EXPLAIN'	=> 'يجب أن تكون الصورة موجودة في المسار <code>%1$s</code>.',
@@ -56,7 +60,5 @@ $lang = array_merge($lang, [
 	'ACP_AVATAR_BY_GENDER_EXPLAIN'	=> 'أنت بحاجة إلى تثبيت وتفعيل الإضافة <a href="https://www.phpbb.com/customise/db/extension/phpbb_3.1_genders" target="_blank" rel="nofollow">الجنس</a> لكي تستطيع استخدام الصورة الشخصية بحسب نوع الجنس.',
 	
 	'ACP_IMAGE_EXTENSIONS'			=> 'أنواع امتداد الصور ',
-	'ACP_IMAGE_EXTENSIONS_EXPLAIN'	=> 'قائمة أنواع امتداد الصور للبحث عنها في مسار الإستايل. أفصل بينهم بعلامة الفاصلة. هذا الخيار لن يكون له أي تأثير إذا لم يتم تحديد "%2$s" في الخيار : "%1$s".',
-	
-	'ACP_PREVIEW_EXPLAIN'	=> 'هنا سيتم عرض الصورة التي أضفتها.'
+	'ACP_IMAGE_EXTENSIONS_EXPLAIN'	=> 'قائمة أنواع امتداد الصور للبحث عنها في مسار الإستايل. أفصل بينهم بعلامة الفاصلة. هذا الخيار لن يكون له أي تأثير إذا لم يتم تحديد <em>%2$s</em> في الخيار : <em>%1$s</em>.'
 ]);

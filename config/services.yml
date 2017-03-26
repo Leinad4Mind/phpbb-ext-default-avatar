@@ -1,11 +1,23 @@
 services:
+    alfredoramos.defaultavatar.defaultavatar:
+        class: alfredoramos\defaultavatar\includes\defaultavatar
+        arguments:
+            - '@dbal.conn'
+            - '@dbal.tools'
+            - '@user'
+            - '@template'
+            - '@config'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+        tags:
+            - { name: includes.defaultavatar }
+
     alfredoramos.defaultavatar.listener:
         class: alfredoramos\defaultavatar\event\listener
         arguments:
-            - @request
-            - @controller.helper
-            - @template
-            - @config
-            - @user
+            - '@request'
+            - '@template'
+            - '@user'
+            - '@alfredoramos.defaultavatar.defaultavatar'
         tags:
             - { name: event.listener }

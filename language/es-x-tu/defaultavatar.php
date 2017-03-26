@@ -19,6 +19,11 @@ if (empty($lang) || !is_array($lang)) {
 }
 
 $lang = array_merge($lang, [
+	// UCP
+	'UCP_ALLOW_DEFAULT_AVATAR'			=> 'Permitir el uso del avatar por defecto:',
+	'UCP_ALLOW_DEFAULT_AVATAR_EXPLAIN'	=> 'Ten en cuenta que Administradores podrán anular este ajuste.',
+	
+	// ACP
 	'ACP_DEFAULT_AVATAR'		=> 'Avatar por defecto',
 	
 	'ACP_SETTINGS_SAVED'		=> '¡Ajustes guardados existosamente!',

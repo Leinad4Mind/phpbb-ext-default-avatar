@@ -1,30 +1,44 @@
 {
-	"name": "alfredoramos/defaultavatar",
-	"type": "phpbb-extension",
-	"description": "Default Avatar Extension for phpBB 3.1.x",
-	"homepage": "https://github.com/AlfredoRamos/phpbb-ext-default-avatar",
-	"version": "1.0.0",
-	"time": "2015-11-02",
-	"keywords": ["avatar", "gravatar", "phpbb", "extension"],
-	"license": "GPL-2.0",
-	"authors": [
-		{
-			"name": "Alfredo Ramos",
-			"homepage": "https://github.com/AlfredoRamos",
-			"email": "alfredo.ramos@yandex.com",
-			"role": "Developer"
-		}
-	],
-	"require": {
-		"php": ">=5.4.0"
-	},
-	"suggest": {
-		"rmcgirr83/genders": "To enable avatars by gender feature"
-	},
-	"extra": {
-		"display-name": "Default Avatar",
-		"soft-require": {
-			"phpbb/phpbb": ">=3.1.3,<3.2.*@dev"
-		}
-	}
+    "name": "alfredoramos/defaultavatar",
+    "type": "phpbb-extension",
+    "description": "Default Avatar Extension for phpBB 3.1.x",
+    "homepage": "https://github.com/AlfredoRamos/phpbb-ext-default-avatar",
+    "version": "1.1.4",
+    "time": "2016-01-06",
+    "keywords": [
+        "avatar",
+        "gravatar",
+        "phpbb",
+        "extension"
+    ],
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Alfredo Ramos",
+            "homepage": "https://github.com/AlfredoRamos",
+            "email": "alfredo.ramos@yandex.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "phpbb/phpbb": ">=3.1.6-RC1,<3.2@dev"
+    },
+    "require-dev": {
+        "phpbb/epv": "dev-master"
+    },
+    "suggest": {
+        "rmcgirr83/genders": "To enable avatars by gender"
+    },
+    "extra": {
+        "display-name": "Default Avatar",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.6-RC1,<3.2.*@dev"
+        },
+        "version-check": {
+            "host": "www.phpbb.com",
+            "directory": "/customise/db/extension/default_avatar",
+            "filename": "version_check"
+        }
+    }
 }

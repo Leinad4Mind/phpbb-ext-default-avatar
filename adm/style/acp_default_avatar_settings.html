@@ -1,19 +1,17 @@
 <!-- INCLUDE overall_header.html -->
 
 <form id="acp_board" class="default-avatar-settings" method="post" action="{U_ACTION}">
-	<h1>{L_SETTINGS}</h1>
-	
 	<div class="errorbox notice">
 		<p>{AVATAR_IMAGE_EXPLAIN}</p>
 		<p>{AVATAR_DIMENSIONS_EXPLAIN}</p>
-		<!-- IF not CAN_ENABLE_AVATAR_BY_GENDER -->
+		<!-- IF not ENABLE_AVATAR_BY_GENDER -->
 		<p>{L_ACP_AVATAR_BY_GENDER_EXPLAIN}</p>
 		<!-- ENDIF -->
 	</div>
 	
-	<noscript class="errorbox error">{L_ACP_JAVASCRIPT_EXPLAIN}</noscript>
-	
 	<fieldset class="default-avatar-options">
+		<legend>{L_SETTINGS}</legend>
+		
 		<dl>
 			<dt>
 				<label for="default_avatar_type">{L_ACP_AVATAR_TYPE}</label>
@@ -21,41 +19,42 @@
 			</dt>
 			<dd>
 				<label>
-					<input name="default_avatar_type" class="radio trigger" type="radio" value="style"<!-- IF AVATAR_TYPE eq "style" --> checked="checked"<!-- ENDIF -->> {L_ACP_AVATAR_FROM_STYLE}
+					<input name="default_avatar_type" id="default_avatar_type" class="radio" type="radio" value="style"<!-- IF AVATAR_TYPE eq "style" --> checked="checked"<!-- ENDIF -->> {L_ACP_STYLE_AVATAR}
 				</label>
 				<label>
-					<input name="default_avatar_type" class="radio trigger" type="radio" value="local"<!-- IF AVATAR_TYPE eq "local" --> checked="checked"<!-- ENDIF -->> {L_ACP_LOCAL_AVATAR}
+					<input name="default_avatar_type" class="radio" type="radio" value="local"<!-- IF AVATAR_TYPE eq "local" --> checked="checked"<!-- ENDIF -->> {L_ACP_LOCAL_AVATAR}
 				</label>
 				<label>
-					<input name="default_avatar_type" class="radio trigger" type="radio" value="remote"<!-- IF AVATAR_TYPE eq "remote" --> checked="checked"<!-- ENDIF -->> {L_ACP_REMOTE_AVATAR}
+					<input name="default_avatar_type" class="radio" type="radio" value="remote"<!-- IF AVATAR_TYPE eq "remote" --> checked="checked"<!-- ENDIF -->> {L_ACP_REMOTE_AVATAR}
 				</label>
 				<label>
-					<input name="default_avatar_type" class="radio trigger" type="radio" value="gravatar"<!-- IF AVATAR_TYPE eq "gravatar" --> checked="checked"<!-- ENDIF -->> {L_ACP_GRAVATAR_AVATAR}
+					<input name="default_avatar_type" class="radio" type="radio" value="gravatar"<!-- IF AVATAR_TYPE eq "gravatar" --> checked="checked"<!-- ENDIF -->> {L_ACP_GRAVATAR_AVATAR}
 				</label>
 			</dd>
 		</dl>
 		
-		<!-- IF CAN_ENABLE_AVATAR_BY_GENDER -->
+		<!-- IF ENABLE_AVATAR_BY_GENDER -->
 		<dl>
 			<dt>
 				<label for="default_avatar_by_gender">{L_ACP_AVATAR_BY_GENDER}</label>
 			</dt>
 			<dd>
 				<label>
-					<input name="default_avatar_by_gender" class="radio trigger" type="radio" value="1"<!-- IF AVATAR_BY_GENDER --> checked="checked"<!-- ENDIF --> /> {L_YES}
+					<input name="default_avatar_by_gender" id="default_avatar_by_gender" class="radio" type="radio" value="1"<!-- IF AVATAR_BY_GENDER --> checked="checked"<!-- ENDIF --> /> {L_YES}
 				</label>
 				<label>
-					<input name="default_avatar_by_gender" class="radio trigger" type="radio" value="0"<!-- IF not AVATAR_BY_GENDER --> checked="checked"<!-- ENDIF --> /> {L_NO}
+					<input name="default_avatar_by_gender" class="radio" type="radio" value="0"<!-- IF not AVATAR_BY_GENDER --> checked="checked"<!-- ENDIF --> /> {L_NO}
 				</label>
 			</dd>
 		</dl>
+		
 		<dl>
 			<dt>
 				<label for="default_avatar_image_extensions">{L_ACP_IMAGE_EXTENSIONS}</label>
 				<br /><span>{IMAGE_EXTENSIONS_EXPLAIN}</span>
 			</dt>
 			<dd>
-				<input name="default_avatar_image_extensions" class="trigger responsive" id="default_avatar_image_extensions" type="text"<!-- IF AVATAR_EXTENSIONS --> value="{AVATAR_EXTENSIONS}"<!-- ENDIF --> />
+				<input name="default_avatar_image_extensions" class="responsive" id="default_avatar_image_extensions" type="text"<!-- IF AVATAR_EXTENSIONS --> value="{AVATAR_EXTENSIONS}"<!-- ENDIF --> />
 			</dd>
 		</dl>
 		<!-- ENDIF -->
@@ -65,36 +64,40 @@
 				<label for="default_avatar_image">{L_ACP_AVATAR_IMAGE}</label>
 			</dt>
 			<dd>
-				<input name="default_avatar_image" class="trigger responsive" id="default_avatar_image" type="text"<!-- IF AVATAR_IMAGE --> value="{AVATAR_IMAGE}"<!-- ENDIF --> />
+				<input name="default_avatar_image" class="responsive" id="default_avatar_image" type="text"<!-- IF AVATAR_IMAGE --> value="{AVATAR_IMAGE}"<!-- ENDIF --> />
 			</dd>
 		</dl>
+		
 		<dl>
 			<dt>
 				<label for="default_avatar_image_female">{L_ACP_AVATAR_IMAGE_FEMALE}</label>
 			</dt>
 			<dd>
-				<input name="default_avatar_image_female" class="trigger responsive" id="default_avatar_image_female" type="text"<!-- IF AVATAR_IMAGE_FEMALE --> value="{AVATAR_IMAGE_FEMALE}"<!-- ENDIF --> />
+				<input name="default_avatar_image_female" class="responsive" id="default_avatar_image_female" type="text"<!-- IF AVATAR_IMAGE_FEMALE --> value="{AVATAR_IMAGE_FEMALE}"<!-- ENDIF --> />
 			</dd>
 		</dl>
+		
 		<dl>
 			<dt>
 				<label for="default_avatar_image_male">{L_ACP_AVATAR_IMAGE_MALE}</label>
 			</dt>
 			<dd>
-				<input name="default_avatar_image_male" class="trigger responsive" id="default_avatar_image_male" type="text"<!-- IF AVATAR_IMAGE_MALE --> value="{AVATAR_IMAGE_MALE}"<!-- ENDIF --> />
+				<input name="default_avatar_image_male" class="responsive" id="default_avatar_image_male" type="text"<!-- IF AVATAR_IMAGE_MALE --> value="{AVATAR_IMAGE_MALE}"<!-- ENDIF --> />
 			</dd>
 		</dl>
+		
 		<dl>
 			<dt>
 				<label for="default_avatar_width">{L_ACP_AVATAR_DIMENSIONS}</label>
 				<br /><span>{L_MAX_AVATAR_SIZE_EXPLAIN}</span>
 			</dt>
 			<dd>
-				<input name="default_avatar_width" id="default_avatar_width" class="trigger" type="number" min="{AVATAR_MIN_WIDTH}" max="{AVATAR_MAX_WIDTH}" value="{AVATAR_WIDTH}" />
+				<input name="default_avatar_width" id="default_avatar_width" type="number" min="{AVATAR_MIN_WIDTH}" max="{AVATAR_MAX_WIDTH}" value="{AVATAR_WIDTH}" />
 				&nbsp;x&nbsp;
-				<input name="default_avatar_height" id="default_avatar_height" class="trigger" type="number" min="{AVATAR_MIN_HEIGHT}" max="{AVATAR_MAX_HEIGHT}" value="{AVATAR_HEIGHT}" />
+				<input name="default_avatar_height" id="default_avatar_height" type="number" min="{AVATAR_MIN_HEIGHT}" max="{AVATAR_MAX_HEIGHT}" value="{AVATAR_HEIGHT}" />
 			</dd>
 		</dl>
+		
 		<dl>
 			<dt>
 				<label for="force_default_avatar">{L_ACP_FORCE_AVATAR}</label>
@@ -102,20 +105,11 @@
 			</dt>
 			<dd>
 				<label>
-					<input name="force_default_avatar" class="radio trigger" type="radio" value="1"<!-- IF FORCE_DEFAULT_AVATAR --> checked="checked"<!-- ENDIF --> /> {L_YES}
+					<input name="force_default_avatar" class="radio" type="radio" value="1"<!-- IF FORCE_DEFAULT_AVATAR --> checked="checked"<!-- ENDIF --> /> {L_YES}
 				</label>
 				<label>
-					<input name="force_default_avatar" class="radio trigger" type="radio" value="0"<!-- IF not FORCE_DEFAULT_AVATAR --> checked="checked"<!-- ENDIF --> /> {L_NO}
+					<input name="force_default_avatar" id="force_default_avatar" class="radio" type="radio" value="0"<!-- IF not FORCE_DEFAULT_AVATAR --> checked="checked"<!-- ENDIF --> /> {L_NO}
 				</label>
-			</dd>
-		</dl>
-		<dl>
-			<dt>
-				<label>{L_PREVIEW}</label>
-				<br /><span>{L_ACP_PREVIEW_EXPLAIN}</span>
-			</dt>
-			<dd>
-				<div id="default_avatar_preview" data-board-style="{BOARD_STYLE_PATH}" data-board-url="{BOARD_URL}" data-min-width="{AVATAR_MIN_WIDTH}" data-max-width="{AVATAR_MAX_WIDTH}" data-min-height="{AVATAR_MIN_HEIGHT}" data-max-height="{AVATAR_MAX_HEIGHT}" data-image-extensions="{AVATAR_EXTENSIONS}"></div>
 			</dd>
 		</dl>
 	</fieldset>
@@ -125,8 +119,9 @@
 			<input type="submit" class="button1" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
 			<input type="reset" class="button2" id="reset" name="reset" value="{L_RESET}" />
 		</p>
-		{S_FORM_TOKEN}
 	</fieldset>
+	
+	{S_FORM_TOKEN}
 </form>
 
 <!-- INCLUDE overall_footer.html -->

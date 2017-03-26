@@ -1,4 +1,4 @@
-<?php namespace alfredoramos\defaultavatar\migrations;
+<?php
 
 /**
  * @package Default Avatar - phpBB Extension
@@ -6,6 +6,8 @@
  * @copyright (c) 2015 Alfredo Ramos
  * @license GNU GPL 2.0 <https://www.gnu.org/licenses/gpl-2.0.txt>
  */
+
+namespace alfredoramos\defaultavatar\migrations;
 
 class m2_default_avatar_data extends \phpbb\db\migration\migration {
 	

@@ -1,4 +1,4 @@
-<?php namespace alfredoramos\defaultavatar;
+<?php
 
 /**
  * @package Default Avatar - phpBB Extension
@@ -7,12 +7,14 @@
  * @license GNU GPL 2.0 <https://www.gnu.org/licenses/gpl-2.0.txt>
  */
 
+namespace alfredoramos\defaultavatar;
+
 /**
  * @ignore
  */
 class ext extends \phpbb\extension\base {
 	
-	const PHPBB_VERSION = '3.1.3';
+	const PHPBB_VERSION = '3.1.6-RC1';
 	
 	public function is_enableable() {
 		$config = $this->container->get('config');

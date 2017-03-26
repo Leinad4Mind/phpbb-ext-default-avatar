@@ -1,4 +1,4 @@
-<?php namespace alfredoramos\defaultavatar\acp;
+<?php
 
 /**
  * @package Default Avatar - phpBB Extension
@@ -7,21 +7,24 @@
  * @license GNU GPL 2.0 <https://www.gnu.org/licenses/gpl-2.0.txt>
  */
 
+namespace alfredoramos\defaultavatar\acp;
+
 class main_module {
 	public $u_action;
 
 	public function main($id, $mode) {
 		global $db, $user, $auth, $template, $cache, $request;
 		global $config, $phpbb_root_path, $phpbb_admin_path, $phpEx;
+		global $phpbb_container;
+		
+		$defaultavatar = $phpbb_container->get('alfredoramos.defaultavatar.defaultavatar');
 
-		$user->add_lang('acp/common');
-		$user->add_lang('acp/board');
+		$user->add_lang(['acp/common', 'acp/board']);
 		$this->tpl_name = 'acp_default_avatar_settings';
 		$this->page_title = $user->lang('ACP_DEFAULT_AVATAR');
 		add_form_key('alfredoramos/defaultavatar');
 		
 		// Helpers
-		$defaultavatar = \alfredoramos\defaultavatar\includes\defaultavatar::instance();
 		$avatar = [
 			'type'		=> '',
 			'driver'	=> '',
@@ -37,14 +40,11 @@ class main_module {
 			'force'		=> false
 		];
 		
-		// Current values stored in a new variable
+		// Config values stored in a new variable
 		// to cast values to their correct type
 		$current = [
 			'type'		=> $config['default_avatar_type'],
-			'driver'	=> sprintf(
-				'avatar.driver.%s',
-				($config['default_avatar_type'] === 'style') ? 'remote' : $config['default_avatar_type']
-			),
+			'driver'	=> $config['default_avatar_driver'],
 			'image'		=> [
 				'default'	=> $config['default_avatar_image'],
 				'female'	=> $config['default_avatar_image_female'],
@@ -75,7 +75,7 @@ class main_module {
 			$avatar['type'] = in_array($avatar['type'], ['style', 'local', 'remote', 'gravatar']) ? $avatar['type'] : 'style';
 			
 			// Avatar driver
-			$avatar['driver'] = $current['driver'];
+			$avatar['driver'] = sprintf('avatar.driver.%s', ($avatar['type'] === 'style') ? 'remote' : $avatar['type']);
 			
 			// Avatar image
 			$avatar['image']['default'] = $request->variable('default_avatar_image', $current['image']['default']);
@@ -123,11 +123,9 @@ class main_module {
 		// Template variables
 		$template->assign_vars([
 			'U_ACTION'					=> $this->u_action,
-			'BOARD_URL'					=> generate_board_url() . '/',
-			'BOARD_STYLE_PATH'			=> $defaultavatar->get_style($user->data['user_style'])['style_path'],
 			'AVATAR_TYPE_EXPLAIN'		=> vsprintf($user->lang('ACP_AVATAR_TYPE_EXPLAIN'), [
-				$user->lang('ACP_AVATAR_FROM_STYLE'),
-				$user->lang('ACP_AVATAR_FROM_STYLE_EXPLAIN'),
+				$user->lang('ACP_STYLE_AVATAR'),
+				$user->lang('ACP_STYLE_AVATAR_EXPLAIN'),
 				$user->lang('ACP_LOCAL_AVATAR'),
 				sprintf(
 					$user->lang('ACP_LOCAL_AVATAR_EXPLAIN'),
@@ -140,12 +138,12 @@ class main_module {
 			]),
 			'IMAGE_EXTENSIONS_EXPLAIN'	=> vsprintf($user->lang('ACP_IMAGE_EXTENSIONS_EXPLAIN'), [
 				$user->lang('ACP_AVATAR_TYPE'),
-				$user->lang('ACP_AVATAR_FROM_STYLE')
+				$user->lang('ACP_STYLE_AVATAR')
 			]),
 			'AVATAR_IMAGE_EXPLAIN'		=> vsprintf($user->lang('ACP_AVATAR_IMAGE_EXPLAIN'), [
 				$user->lang('ACP_AVATAR_IMAGE'),
 				$user->lang('ACP_AVATAR_TYPE'),
-				$user->lang('ACP_AVATAR_FROM_STYLE')
+				$user->lang('ACP_STYLE_AVATAR')
 			]),
 			'AVATAR_DIMENSIONS_EXPLAIN'	=> sprintf($user->lang('ACP_AVATAR_DIMENSIONS_EXPLAIN'), $user->lang('ACP_AVATAR_SETTINGS')),
 			

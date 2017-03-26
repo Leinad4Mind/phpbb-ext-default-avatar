@@ -1,4 +1,4 @@
-<?php namespace alfredoramos\defaultavatar\migrations;
+<?php
 
 /**
  * @package Default Avatar - phpBB Extension
@@ -6,6 +6,8 @@
  * @copyright (c) 2015 Alfredo Ramos
  * @license GNU GPL 2.0 <https://www.gnu.org/licenses/gpl-2.0.txt>
  */
+
+namespace alfredoramos\defaultavatar\migrations;
 
 class m1_default_avatar_schema extends \phpbb\db\migration\migration {
 	
@@ -17,7 +19,7 @@ class m1_default_avatar_schema extends \phpbb\db\migration\migration {
 		return [
 			'add_columns'	=> [
 				USERS_TABLE	=> [
-					'user_allow_default_avatar'	=> ['BOOL', true]
+					'user_allow_default_avatar'	=> ['BOOL', 1]
 				]
 			]
 		];

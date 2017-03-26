@@ -17,16 +17,3 @@
 .default-avatar-settings label > .radio {
 	vertical-align: middle;
 }
-.avatar-preview {
-	display: inline-block;
-	margin: 0 10px 10px 0;
-}
-.avatar-preview:last-child {
-	margin-right: 0;
-}
-noscript {
-	display: block;
-	color: #fff !important;
-	font-size: 0.85em;
-	line-height: 1.4em;
-}

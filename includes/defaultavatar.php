@@ -1,4 +1,4 @@
-<?php namespace alfredoramos\defaultavatar\includes;
+<?php
 
 /**
  * @package Default Avatar - phpBB Extension
@@ -7,60 +7,58 @@
  * @license GNU GPL 2.0 <https://www.gnu.org/licenses/gpl-2.0.txt>
  */
 
+namespace alfredoramos\defaultavatar\includes;
+
 class defaultavatar {
-	use singletontrait;
 	
-	/** @var \phpbb\db\driver\driver_interface */
+	/** @var \phpbb\db\driver\factory */
 	protected $db;
+	
+	/** @var \phpbb\db\tools */
+	protected $db_tools;
 
 	/** @var \phpbb\user */
 	protected $user;
 
 	/** @var \phpbb\template\template */
 	protected $template;
-
-	/** @var \phpbb\request\request_interface */
-	protected $request;
-
-	/** @var \phpbb\cache\driver\driver_interface */
-	protected $cache;
-
-	/** @var \phpbb\auth\auth */
-	protected $auth;
+	
+	/** @var \phpbb\config\config */
+	protected $config;
 
 	/** @var string */
-	protected $phpbb_root_path;
+	protected $root_path;
 
 	/** @var string */
 	protected $php_ext;
 	
-	/** @var \phpbb\db\tools */
-	protected $db_tools;
-	
-	protected function init() {
-		global $db, $user, $phpbb_admin_path, $phpbb_root_path, $phpEx, $template, $request, $cache, $auth, $config;
-		
+	public function __construct(
+		\phpbb\db\driver\factory $db,
+		\phpbb\db\tools $db_tools,
+		\phpbb\user $user,
+		\phpbb\template\template $template,
+		\phpbb\config\config $config,
+		$root_path,
+		$php_ext
+	) {
 		$this->db = $db;
+		$this->db_tools = $db_tools;
 		$this->user = $user;
 		$this->template = $template;
-		$this->request = $request;
-		$this->cache = $cache;
-		$this->auth = $auth;
 		$this->config = $config;
-		$this->phpbb_root_path = $phpbb_root_path;
-		$this->php_ext = $phpEx;
-		$this->db_tools = new \phpbb\db\tools($this->db);
+		$this->root_path = $root_path;
+		$this->php_ext = $php_ext;
 	}
 	
 	/**
 	 * Get style by ID
-	 * @param	integer		$id	Style ID
+	 * @param	integer		$style_id	Style ID
 	 * @return	array|bool
 	 */
-	public function get_style($id = 0) {
+	public function get_style($style_id = 0) {
 		$sql = 'SELECT *
 				FROM ' . STYLES_TABLE . '
-				WHERE style_id = "' . $this->db->sql_escape($id) . '"';
+				WHERE style_id = ' . (int) $style_id;
 		$result = $this->db->sql_query($sql);
 		$style = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
@@ -76,12 +74,12 @@ class defaultavatar {
 	public function get_user_style($user_id = 0) {
 		$sql = 'SELECT user_style
 				FROM ' . USERS_TABLE . '
-				WHERE user_id = "' . $this->db->sql_escape($user_id) . '"';
+				WHERE user_id = ' . (int) $user_id;
 		$result = $this->db->sql_query($sql);
-		$row = $this->db->sql_fetchrow($result);
+		$user_style = (int) $this->db->sql_fetchfield('user_style');
 		$this->db->sql_freeresult($result);
 		
-		return $this->get_style($row['user_style']);
+		return $this->get_style($user_style);
 	}
 	
 	/**
@@ -106,7 +104,12 @@ class defaultavatar {
 	 * @return	bool
 	 */
 	public function style_avatar_exists($style = '', $img = '', $ext = 'gif') {
-		$avatar = vsprintf('%s/styles/%s/theme/images/%s.%s', [$this->phpbb_root_path, $style, $img, $ext]);
+		$avatar = vsprintf('%sstyles/%s/theme/images/%s.%s', [
+			$this->root_path,
+			$style,
+			$img,
+			$ext
+		]);
 		
 		return file_exists(realpath($avatar));
 	}
@@ -126,7 +129,7 @@ class defaultavatar {
 		
 		$extensions = explode(',', trim($this->config['default_avatar_extensions']));
 		
-		if ($this->can_enable_gender_avatars() && $this->config['default_avatar_by_gender']) {
+		if ($this->can_enable_gender_avatars() && (bool) $this->config['default_avatar_by_gender']) {
 			
 			if (!empty($gender)) {
 				
@@ -144,7 +147,8 @@ class defaultavatar {
 			
 		}
 		
-		return vsprintf('./styles/%s/theme/images/%s.%s', [
+		return vsprintf('%sstyles/%s/theme/images/%s.%s', [
+			$this->root_path,
 			$style['style_path'],
 			$avatar['name'],
 			$avatar['ext']
@@ -161,10 +165,10 @@ class defaultavatar {
 		$defaults = [
 			'full_path'	=> false,
 			'html'		=> false,
+			'width'		=> (int) $this->config['default_avatar_width'],
+			'height'	=> (int) $this->config['default_avatar_height'],
 			'attrs'		=> [
-				'alt'		=> $this->user->lang('USER_AVATAR'),
-				'width'		=> $this->config['default_avatar_width'],
-				'height'	=> $this->config['default_avatar_height']
+				'alt'	=> $this->user->lang('USER_AVATAR')
 			]
 		];
 		$options = array_merge($defaults, $options);
@@ -176,36 +180,31 @@ class defaultavatar {
 				$url = $this->get_current_style_avatar($user_id);
 				break;
 			case 'local':
-				$url = sprintf('%s', $url);
+				if (!empty($gender) && (bool) $this->config['default_avatar_by_gender']) {
+					$url = $this->config[sprintf('default_avatar_image_%s', $gender)];
+				}
 				
+				// Needed in private messages as there the image
+				// doesn't have the gallery path
 				if ($options['full_path']) {
-					$url = vsprintf('./%s/%s', [
+					$url = vsprintf('%s%s/%s', [
+						$this->root_path,
 						$this->config['avatar_gallery_path'],
 						$url
 					]);
 				}
-				
-				if (!empty($gender) && $this->config['default_avatar_by_gender']) {
-					$url = sprintf('%s', $this->config[sprintf('default_avatar_image_%s', $gender)]);
-					
-					if ($options['full_path']) {
-						$url = vsprintf('./%s/%s', [
-							$this->config['avatar_gallery_path'],
-							$this->config[sprintf('default_avatar_image_%s',$gender)]
-						]);
-					}
-				}
 				break;
 			case 'gravatar':
-				$url = $this->get_gravatar([
-					'email'	=> $this->config['default_avatar_image'],
-					'size'	=> $this->config['default_avatar_width']
-				]);
-				
 				if (!empty($gender) && $this->config['default_avatar_by_gender']) {
+					$url = $this->config[sprintf('default_avatar_image_%s', $gender)];
+				}
+				
+				// Needed in private messages because the MD5 email hash
+				// is not calculated there.
+				if ($options['full_path']) {
 					$url = $this->get_gravatar([
-						'email'	=> $this->config[sprintf('default_avatar_image_%s', $gender)],
-						'size'	=> $this->config['default_avatar_width']
+						'email'	=> $url,
+						'size'	=> $options['width']
 					]);
 				}
 				break;
@@ -217,6 +216,12 @@ class defaultavatar {
 		}
 		
 		if ($options['html']) {
+			// Default width/height
+			$options['attrs'] = array_merge($options['attrs'], [
+				'width'		=> $options['width'],
+				'height'	=> $options['height']
+			]);
+			
 			$html = '<img src="%s"%s />';
 			$attrs = '';
 			
@@ -227,10 +232,7 @@ class defaultavatar {
 				]);
 			}
 			
-			$url = vsprintf($html, [
-				$url,
-				$attrs
-			]);
+			$url = vsprintf($html, [$url, $attrs]);
 		}
 		
 		return $url;
@@ -279,13 +281,13 @@ class defaultavatar {
 		if ($this->can_enable_gender_avatars()) {
 			$sql = 'SELECT user_gender
 					FROM ' . USERS_TABLE . '
-					WHERE user_id = "' . $this->db->sql_escape($user_id) . '"';
+					WHERE user_id = ' . (int) $user_id;
 			$result = $this->db->sql_query($sql);
-			$row = $this->db->sql_fetchrow($result);
+			$user_gender = (int) $this->db->sql_fetchfield('user_gender');
 			$this->db->sql_freeresult($result);
 			
-			$gender = ($row['user_gender'] === '1') ? 'male' : $gender;
-			$gender = ($row['user_gender'] === '2') ? 'female' : $gender;
+			$gender = ($user_gender === 1) ? 'male' : $gender;
+			$gender = ($user_gender === 2) ? 'female' : $gender;
 		}
 		
 		return $gender;
@@ -300,8 +302,8 @@ class defaultavatar {
 		return [
 			'user_avatar'			=> $this->get_avatar($user_id),
 			'user_avatar_type'		=> $this->config['default_avatar_driver'],
-			'user_avatar_width'		=> $this->config['default_avatar_width'],
-			'user_avatar_height'	=> $this->config['default_avatar_height']
+			'user_avatar_width'		=> (int) $this->config['default_avatar_width'],
+			'user_avatar_height'	=> (int) $this->config['default_avatar_height']
 		];
 	}
 	

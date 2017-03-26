@@ -19,16 +19,20 @@ if (empty($lang) || !is_array($lang)) {
 }
 
 $lang = array_merge($lang, [
+	// UCP
+	'UCP_ALLOW_DEFAULT_AVATAR'			=> 'Permitir el uso del avatar por defecto:',
+	'UCP_ALLOW_DEFAULT_AVATAR_EXPLAIN'	=> 'Tome en cuenta que Administradores podrán anular este ajuste.',
+	
+	// ACP
 	'ACP_DEFAULT_AVATAR'		=> 'Avatar por defecto',
-	'ACP_JAVASCRIPT_EXPLAIN'	=> 'La vista previa requiere JavaScript para funcionar, por favor actívelo en su navegador.',
 	
 	'ACP_SETTINGS_SAVED'		=> '¡Ajustes guardados existosamente!',
 	
 	'ACP_AVATAR_TYPE'			=> 'Tipo de avatar',
 	'ACP_AVATAR_TYPE_EXPLAIN'	=> '%1$s: %2$s<br />%3$s: %4$s<br />%5$s: %6$s<br />%7$s: %8$s<br />',
 	
-	'ACP_AVATAR_FROM_STYLE'			=> 'Del estilo',
-	'ACP_AVATAR_FROM_STYLE_EXPLAIN'	=> 'Obtiene la imagen del estilo del usuario',
+	'ACP_STYLE_AVATAR'			=> 'Del estilo',
+	'ACP_STYLE_AVATAR_EXPLAIN'	=> 'Obtiene la imagen del estilo del usuario',
 	
 	'ACP_LOCAL_AVATAR'			=> 'Local',
 	'ACP_LOCAL_AVATAR_EXPLAIN'	=> 'La imagen debe estar en la ruta <code>%1$s</code>',
@@ -54,7 +58,5 @@ $lang = array_merge($lang, [
 	'ACP_AVATAR_BY_GENDER_EXPLAIN'	=> 'Para habilitar esta opción necesita instalar y activar la extensión <a href="https://www.phpbb.com/customise/db/extension/phpbb_3.1_genders" target="_blank" rel="nofollow">Genders</a>.',
 	
 	'ACP_IMAGE_EXTENSIONS'			=> 'Extensiones de imagen',
-	'ACP_IMAGE_EXTENSIONS_EXPLAIN'	=> 'Lista de extensiones de imagen a buscar en la ruta del estilo. Deben estar separadas por una coma. Esta opción no tendrá ningún efecto si "%1$s" es establecido a "%2$s".',
-	
-	'ACP_PREVIEW_EXPLAIN'	=> 'Así es como se verá el avatar.'
+	'ACP_IMAGE_EXTENSIONS_EXPLAIN'	=> 'Lista de extensiones de imagen a buscar en la ruta del estilo. Deben estar separadas por una coma. Esta opción no tendrá ningún efecto si <em>%1$s</em> es establecido a <em>%2$s</em>.'
 ]);
