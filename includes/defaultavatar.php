@@ -34,7 +34,7 @@ class defaultavatar {
 	
 	public function __construct(
 		\phpbb\db\driver\factory $db,
-		\phpbb\db\tools $db_tools,
+		\phpbb\db\tools\tools_interface $db_tools,
 		\phpbb\user $user,
 		\phpbb\template\template $template,
 		\phpbb\config\config $config,
